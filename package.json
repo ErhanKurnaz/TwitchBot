@@ -1,0 +1,19 @@
+{
+  "name": "twitchbot",
+  "version": "1.0.0",
+  "description": "This is a twitch bot for generall use",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ergang2000/TwitchBot.git"
+  },
+  "author": "Erhan Kurnaz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ergang2000/TwitchBot/issues"
+  },
+  "homepage": "https://github.com/ergang2000/TwitchBot#readme"
+}
