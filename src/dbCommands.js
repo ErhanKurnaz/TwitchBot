@@ -1,3 +1,3 @@
 const db = require('./db')
 
-module.exports = db.get('commands').values()
+module.exports = db.getState().commands
