@@ -12,14 +12,14 @@ module.exports = async (channel, context, args) => {
     if (args.length < 2) {
         client.say(
             channel,
-            'Not enough arguments to this command, it is used like this:\n !setCommand <Name of command> <Response of command>'
+            'Not enough arguments to this command, it is used like this:\n !setCommand <Name of command> <Response of command>',
         )
 
         return
     }
 
     const value = args.slice(1).join(' ')
-    db.set('commands.' + args[0], value).write()
+    db.set(`commands.${args[0]}`, value).write()
     dbCommands[args[0]] = value
 
     client.say(channel, `Command: ${args[0]} is updated`)

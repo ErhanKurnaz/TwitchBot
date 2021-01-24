@@ -3,7 +3,7 @@ const { isOp } = require('../utils')
 const db = require('../db')
 const dbCommands = require('../dbCommands')
 
-module.exports = async (channel, context, args, self) => {
+module.exports = async (channel, context, args) => {
     if (!isOp(context.badges)) {
         client.say(channel, `@${context['display-name']} For mods only`)
         return

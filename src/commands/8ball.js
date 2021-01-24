@@ -27,6 +27,8 @@ const eightBallResponses = [
 module.exports = (channel, context) => {
     client.say(
         channel,
-        `@${context['display-name']} The magic eight ball says: ${eightBallResponses[randomNumber(eightBallResponses.length)]}`
+        `@${context['display-name']} The magic eight ball says: ${
+            eightBallResponses[randomNumber(eightBallResponses.length)]
+        }`,
     )
 }
