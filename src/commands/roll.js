@@ -7,7 +7,10 @@ module.exports = (channel, context, args) => {
         if (max > 0) {
             client.say(channel, `@${context['display-name']} rolled: ${randomNumber(max) + 1}`)
         } else {
-            client.say(channel, `@${context['display-name']} i tried to roll ${max}, but i don't know how to roll negative numbers`)
+            client.say(
+                channel,
+                `@${context['display-name']} i tried to roll ${max}, but i don't know how to roll negative numbers`,
+            )
         }
     } else {
         client.say(channel, `You need to enter a number @${context['display-name']}`)
