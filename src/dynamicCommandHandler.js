@@ -14,12 +14,9 @@ const parseCommand = (command, context) => {
         return command
     }
 
-    console.log(varStart, varEnd)
     // removing all occurences of { and }
-    const search = command.substr(varStart, varEnd).replace(/[{}]+/g, '')
-    console.log(search)
+    const search = command.substr(varStart, varEnd).replace(/[{}]+/g, '').trim()
     const variable = getVariable(search, context)
-    console.log(variable)
     return command.substr(0, varStart) + variable + parseCommand(command.substr(varEnd + 2), context)
 }
 
