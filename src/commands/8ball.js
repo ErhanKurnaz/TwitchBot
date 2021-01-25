@@ -1,5 +1,5 @@
-const { client } = require('../index')
-const { randomNumber } = require('../utils')
+import { client } from '../index.js'
+import { randomNumber } from '../utils.js'
 
 const eightBallResponses = [
     'It is certain.',
@@ -24,7 +24,7 @@ const eightBallResponses = [
     'Very doubtful.',
 ]
 
-module.exports = (channel, context) => {
+export default (channel, context) => {
     client.say(
         channel,
         `@${context['display-name']} The magic eight ball says: ${

@@ -1,7 +1,7 @@
-const { client } = require('../index')
-const { randomNumber } = require('../utils')
+import { client } from '../index.js'
+import { randomNumber } from '../utils.js'
 
-module.exports = (channel, context, args) => {
+export default (channel, context, args) => {
     if (args.length && !Number.isNaN(args[0])) {
         const max = Math.floor(Number(args[0]))
         if (max > 0) {

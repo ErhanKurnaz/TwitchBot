@@ -23,7 +23,7 @@ const parseCommand = (command, context) => {
     return command.substr(0, varStart) + variable + parseCommand(command.substr(varEnd + 2), context)
 }
 
-module.exports = (channel, client, context, commands, command) => {
+export default (channel, client, context, commands, command) => {
     client.say(channel, parseCommand(commands[command], context))
     console.log(`parsed command: ${command}`)
 }

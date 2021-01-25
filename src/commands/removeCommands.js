@@ -1,9 +1,9 @@
-const { client } = require('../index')
-const { isOp } = require('../utils')
-const db = require('../db')
-const dbCommands = require('../dbCommands')
+import { client } from '../index.js'
+import { isOp } from '../utils.js'
+import db from '../db.js'
+import dbCommands from '../dbCommands.js'
 
-module.exports = async (channel, context, args) => {
+export default async (channel, context, args) => {
     if (!isOp(context.badges)) {
         client.say(channel, `@${context['display-name']} For mods only`)
         return

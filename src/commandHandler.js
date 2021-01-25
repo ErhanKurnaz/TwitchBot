@@ -1,9 +1,9 @@
-const { client } = require('.')
-const staticCommands = require('./commands')
-const dynamicCommands = require('./dbCommands')
-const dynamicCommandHandler = require('./dynamicCommandHandler')
+import { client } from './index.js'
+import staticCommands from './commands/index.js'
+import dynamicCommands from './dbCommands.js'
+import dynamicCommandHandler from './dynamicCommandHandler.js'
 
-module.exports = (channel, context, msg, self) => {
+export default (channel, context, msg, self) => {
     const args = msg.trim().split(' ')
     const command = args.shift()
     if ((!self, command.charAt(0) === '!')) {

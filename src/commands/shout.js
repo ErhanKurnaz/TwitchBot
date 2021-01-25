@@ -1,6 +1,6 @@
-const { client } = require('../index')
+import { client } from '../index.js'
 
-module.exports = (channel, context, args) => {
+export default (channel, _, args) => {
     if (args.length) {
         client.say(channel, `${args.join(' ')} IS LOVELY!!!!`)
     } else {

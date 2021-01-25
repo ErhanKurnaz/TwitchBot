@@ -1,3 +1,3 @@
-const db = require('./db')
+import db from './db.js'
 
-module.exports = db.getState().commands
+export default db.getState().commands

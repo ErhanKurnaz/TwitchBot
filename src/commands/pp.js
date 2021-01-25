@@ -1,6 +1,6 @@
-const { client } = require('../index')
+import { client } from '../index.js'
 
-module.exports = (channel, context) => {
+export default (channel, context) => {
     let size
     if (context.username.length < 8) {
         size = "you have a small pp, don't be embarrassed 🤖"

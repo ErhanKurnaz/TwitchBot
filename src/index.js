@@ -1,6 +1,7 @@
-require('dotenv').config()
-const tmi = require('tmi.js')
+import dotenv from 'dotenv'
+import tmi from 'tmi.js'
 
+dotenv.config()
 const { BOT_USERNAME, CHANNEL_NAME, OAUTH_TOKEN } = process.env
 
 // Define configuration options
@@ -13,11 +14,9 @@ const opts = {
 }
 
 // Create a client with our options
-const client = new tmi.Client(opts)
+export const client = new tmi.Client(opts)
 
-module.exports = { client }
-
-const commandHandler = require('./commandHandler')
+import commandHandler from './commandHandler.js'
 
 // Register our event handlers
 client.on('message', commandHandler)

@@ -1,18 +1,19 @@
-const fs = require('fs')
+import fs from 'fs'
 
 const commands = {}
 
-fs.readdirSync(__dirname).forEach(file => {
+const files = fs.readdirSync(new URL('./', import.meta.url))
+
+for (const file of files) {
     const commandName = file.replace('.js', '')
 
     if (commandName === 'index') {
-        return
+        continue
     }
 
-    /* eslint global-require: 0 */
-    /* eslint import/no-dynamic-require: 0 */
-    const command = require(`./${commandName}`)
-    commands[commandName] = command
-})
+    import(`./${file}`).then(command => {
+        commands[commandName] = command.default
+    })
+}
 
-module.exports = commands
+export default commands

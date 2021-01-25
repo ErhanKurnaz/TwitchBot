@@ -1,3 +1,3 @@
-const { client } = require('../index')
+import { client } from '../index.js'
 
-module.exports = channel => client.say(channel, 'hello')
+export default channel => client.say(channel, 'hello')
