@@ -12,7 +12,8 @@ export default (channel, context, msg, self) => {
                 staticCommands[command.substr(1)](channel, context, args, self)
                 console.log(`parsed command: ${command}`)
             } else if (Object.hasOwnProperty.call(dynamicCommands, command.substr(1))) {
-                dynamicCommandHandler(channel, client, context, dynamicCommands, command.substr(1))
+                console.log('args:', args)
+                dynamicCommandHandler(channel, client, context, dynamicCommands, command.substr(1), args)
             } else {
                 console.log(`Invalid command ${command}`)
             }
