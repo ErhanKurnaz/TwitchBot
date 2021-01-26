@@ -2,18 +2,13 @@ import fs from 'fs'
 
 const commands = {}
 
-const files = fs.readdirSync(new URL('./', import.meta.url))
-
-for (const file of files) {
+fs.readdirSync(new URL('./', import.meta.url)).forEach(async file => {
     const commandName = file.replace('.js', '')
 
-    if (commandName === 'index') {
-        continue
-    }
-
-    import(`./${file}`).then(command => {
+    if (file !== 'index') {
+        const command = await import(`./${file}`)
         commands[commandName] = command.default
-    })
-}
+    }
+})
 
 export default commands

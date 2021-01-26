@@ -16,6 +16,7 @@ const opts = {
 // Create a client with our options
 export const client = new tmi.Client(opts)
 
+// eslint-disable-next-line import/first
 import commandHandler from './commandHandler.js'
 
 // Register our event handlers
