@@ -49,7 +49,13 @@ export const getStreamInfo = async () => {
         },
     })
 
-    const streams = await response.json()
+    if (response.ok && response.status !== 401) {
+        const streams = await response.json()
 
-    return streams.data[0]
+        return streams.data[0]
+    }
+
+    // token expired
+    authToken = null
+    return getStreamInfo()
 }
