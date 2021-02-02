@@ -59,3 +59,28 @@ export const getStreamInfo = async () => {
     authToken = null
     return getStreamInfo()
 }
+
+export const getFollower = async userId => {
+    const token = await getAuthToken()
+    const { CLIENT_ID, CHANNEL_ID } = process.env
+
+    const response = await fetch(`https://api.twitch.tv/helix/users/follows?from_id=${userId}&to_id=${CHANNEL_ID}`, {
+        headers: {
+            'client-id': CLIENT_ID,
+            Authorization: `Bearer ${token}`,
+        },
+    })
+
+    if (response.ok && response.status !== 401) {
+        const follows = await response.json()
+        if (!follows.data.length) {
+            return null
+        }
+
+        return follows.data[0]
+    }
+
+    // token expired
+    authToken = null
+    return getStreamInfo()
+}
