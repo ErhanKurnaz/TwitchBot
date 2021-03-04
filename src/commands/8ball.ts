@@ -1,5 +1,6 @@
-import { client } from '../index.js'
-import { randomNumber } from '../utils.js'
+import { ICommandProps } from '.'
+import { client } from '../index'
+import { randomNumber } from '../utils'
 
 const eightBallResponses = [
     'It is certain.',
@@ -22,9 +23,9 @@ const eightBallResponses = [
     'My sources say no.',
     'Outlook not so good.',
     'Very doubtful.',
-]
+] as const
 
-export default (channel, context) => {
+export default ({ channel, context }: ICommandProps) => {
     client.say(
         channel,
         `@${context['display-name']} The magic eight ball says: ${

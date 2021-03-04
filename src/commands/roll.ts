@@ -1,7 +1,8 @@
-import { client } from '../index.js'
-import { randomNumber } from '../utils.js'
+import { ICommandProps } from '.'
+import { client } from '../index'
+import { randomNumber } from '../utils'
 
-export default (channel, context, args) => {
+export default ({ channel, context, args }: ICommandProps) => {
     if (args.length && !Number.isNaN(args[0])) {
         const max = Math.floor(Number(args[0]))
         if (max > 0) {

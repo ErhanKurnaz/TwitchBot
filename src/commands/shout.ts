@@ -1,6 +1,7 @@
-import { client } from '../index.js'
+import { ICommandProps } from '.'
+import { client } from '../index'
 
-export default (channel, _, args) => {
+export default ({ channel, args }: ICommandProps) => {
     if (args.length) {
         client.say(channel, `${args.join(' ')} IS LOVELY!!!!`)
     } else {

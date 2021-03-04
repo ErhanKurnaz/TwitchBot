@@ -1,5 +1,5 @@
-import dotenv from 'dotenv'
-import tmi from 'tmi.js'
+import * as dotenv from 'dotenv'
+import * as tmi from 'tmi.js'
 
 dotenv.config()
 const { BOT_USERNAME, CHANNEL_NAME, OAUTH_TOKEN } = process.env
@@ -17,7 +17,7 @@ const opts = {
 export const client = new tmi.Client(opts)
 
 // eslint-disable-next-line import/first
-import commandHandler from './commandHandler.js'
+import commandHandler from './commandHandler'
 
 // Register our event handlers
 client.on('message', commandHandler)

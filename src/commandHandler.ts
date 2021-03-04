@@ -1,15 +1,16 @@
-import { client } from './index.js'
-import staticCommands from './commands/index.js'
-import dynamicCommands from './dbCommands.js'
-import dynamicCommandHandler from './dynamicCommandHandler.js'
+import { client } from './index'
+import staticCommands from './commands/index'
+import dynamicCommands from './dbCommands'
+import dynamicCommandHandler from './dynamicCommandHandler'
+import { ChatUserstate } from 'tmi.js'
 
-export default (channel, context, msg, self) => {
+export default (channel: string, context: ChatUserstate, msg: string, self: boolean) => {
     const args = msg.trim().split(' ')
     const command = args.shift()
-    if ((!self, command.charAt(0) === '!')) {
+    if (!self && command.charAt(0) === '!') {
         try {
             if (Object.hasOwnProperty.call(staticCommands, command.substr(1))) {
-                staticCommands[command.substr(1)](channel, context, args, self)
+                staticCommands[command.substr(1)]({ channel, context, args, self })
                 console.log(`parsed command: ${command}`)
             } else if (Object.hasOwnProperty.call(dynamicCommands, command.substr(1))) {
                 console.log('args:', args)

@@ -1,8 +1,9 @@
 import { differenceInDays } from 'date-fns'
-import { client } from '../index.js'
-import { getFollower } from '../utils.js'
+import { ICommandProps } from '.'
+import { client } from '../index'
+import { getFollower } from '../utils'
 
-export default async (channel, context) => {
+export default async ({ channel, context }: ICommandProps) => {
     const follower = await getFollower(context['user-id'])
 
     if (follower === null) {

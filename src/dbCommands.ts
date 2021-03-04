@@ -1,3 +1,3 @@
-import db from './db.js'
+import db from './db'
 
 export default db.getState().commands

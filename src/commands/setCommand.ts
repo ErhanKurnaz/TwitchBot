@@ -1,9 +1,10 @@
-import { client } from '../index.js'
-import { isOp } from '../utils.js'
-import db from '../db.js'
-import dbCommands from '../dbCommands.js'
+import { client } from '../index'
+import { isOp } from '../utils'
+import db from '../db'
+import dbCommands from '../dbCommands'
+import { ICommandProps } from '.'
 
-export default async (channel, context, args) => {
+export default async ({ channel, context, args }: ICommandProps) => {
     if (!isOp(context.badges)) {
         client.say(channel, `@${context['display-name']} For mods only`)
         return

@@ -1,7 +1,8 @@
-import { client } from '../index.js'
-import { getStreamInfo } from '../utils.js'
+import { ICommandProps } from '.'
+import { client } from '../index'
+import { getStreamInfo } from '../utils'
 
-function parseMilli(milliseconds) {
+function parseMilli(milliseconds: number) {
     let seconds = Math.floor(milliseconds / 1000)
     let minutes = Math.floor(seconds / 60)
     seconds %= 60
@@ -15,7 +16,7 @@ function parseMilli(milliseconds) {
     }
 }
 
-export default async channel => {
+export default async ({ channel }: ICommandProps) => {
     const stream = await getStreamInfo()
 
     const startDate = new Date(stream.started_at)

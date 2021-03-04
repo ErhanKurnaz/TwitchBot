@@ -1,17 +1,17 @@
 import fetch from 'node-fetch'
-import db from './db.js'
+import { Badges } from 'tmi.js'
 
-let authToken = null
+let authToken: string | null = null
 
-export const randomNumber = max => Math.floor(Math.random() * max)
+export const randomNumber = (max: number) => Math.floor(Math.random() * max)
 
-export const isStreamer = badges => badges.broadcaster === '1'
+export const isStreamer = (badges: Badges) => badges.broadcaster === '1'
 
-export const isMod = badges => badges.moderator === '1'
+export const isMod = (badges: Badges) => badges.moderator === '1'
 
-export const isOp = badges => isStreamer(badges) || isMod(badges)
+export const isOp = (badges: Badges) => isStreamer(badges) || isMod(badges)
 
-export const getAuthToken = async () => {
+export const getAuthToken = async (): Promise<string> => {
     if (authToken != null) {
         return authToken
     }
