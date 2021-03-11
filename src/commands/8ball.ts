@@ -2,6 +2,8 @@ import { ICommandProps } from '.'
 import { client } from '../index'
 import { randomNumber } from '../utils'
 
+export const description = 'ths command will look into the future to answer your yes or no question!'
+
 const eightBallResponses = [
     'It is certain.',
     'It is decidedly so.',

@@ -2,6 +2,9 @@ import { ICommandProps } from '.'
 import { client } from '../index'
 import { getStreamInfo } from '../utils'
 
+export const description =
+    'this command tells you how long the stream has been going on for. What, did you expect something witty?'
+
 function parseMilli(milliseconds: number) {
     let seconds = Math.floor(milliseconds / 1000)
     let minutes = Math.floor(seconds / 60)

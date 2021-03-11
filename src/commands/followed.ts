@@ -3,6 +3,9 @@ import { ICommandProps } from '.'
 import { client } from '../index'
 import { getFollower } from '../utils'
 
+export const description =
+    "want to see how long you have followed for, then this is the command for you! (you'll never beat Hopo6919 tho)"
+
 export default async ({ channel, context }: ICommandProps) => {
     const follower = await getFollower(context['user-id'])
 

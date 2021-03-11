@@ -1,6 +1,8 @@
 import { ICommandProps } from '.'
 import { client } from '../index'
 
+export const description =
+    "this command will measure your pp size. You will either feel really confident after using this command, or think that this command is broken (it's not BTW Kappa )."
 export default ({ channel, context }: ICommandProps) => {
     let size: string
     if (context.username.length < 8) {

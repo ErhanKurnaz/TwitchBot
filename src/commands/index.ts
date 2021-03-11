@@ -8,14 +8,22 @@ export interface ICommandProps {
     self: boolean
 }
 
-const commands: Record<string, (props: ICommandProps) => void> = {}
+export interface ICommand {
+    fn: (props: ICommandProps) => void
+    description?: string
+}
+
+const commands: Record<string, ICommand> = {}
 
 readdirSync(__dirname).forEach(async file => {
     const commandName = file.replace('.ts', '')
 
     if (commandName !== 'index') {
         const command = await import(`./${commandName}`)
-        commands[commandName] = command.default
+        commands[commandName] = {
+            fn: command.default,
+            description: command.description,
+        }
     }
 })
 
