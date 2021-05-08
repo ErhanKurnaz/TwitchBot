@@ -84,3 +84,17 @@ export const getFollower = async userId => {
     authToken = null
     return getStreamInfo()
 }
+
+export const getLeaderBoard = async (): Promise<string> => {
+    // @ts-ignore
+    process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0
+    const response = await fetch('https://webtabs.tk:1338/1', {
+        headers: {
+            'Content-Type': 'text/html',
+        }
+    })
+
+    // @ts-ignore
+    process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 1
+    return await response.text()
+}
