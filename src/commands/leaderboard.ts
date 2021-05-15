@@ -3,13 +3,14 @@ import cheerio from 'cheerio'
 import { getLeaderBoard } from "../utils";
 import { client } from "..";
 
-const findUserInLeaderboard = (html: string): [string, string, string] | null => {
+const findUserInLeaderboard = (html: string): [string, string, string, number] | null => {
     const $ = cheerio.load(html)
-    let result: [string, string, string] | null = null
-    $('tr').each(function () {
+    let result: [string, string, string, number] | null = null
+    const rows = $('tr').toArray()
+    rows.forEach((item, index) => {
         if (result === null) {
             let userFound = false
-            $(this)
+            $(item)
                 .find('td')
                 .each(function () {
                     if ($(this).text() === 'MatsDoesGaming') {
@@ -18,10 +19,17 @@ const findUserInLeaderboard = (html: string): [string, string, string] | null =>
                 })
 
             if (userFound) {
-                result = $(this)
+                result = $(item)
                     .find('td')
                     .toArray()
-                    .map(value => $(value).text()) as [string, string, string]
+                    .map(value => $(value).text()) as [string, string, string, number]
+                if (index === 0) {
+                    result[3] = Number(result[2])
+                } else {
+                    const nextKills = $($(rows[index - 1]).find('td').toArray()[2]).text()
+                    console.log(nextKills)
+                    result[3] = Number(nextKills) - Number(result[2])
+                }
             }
         }
     })
@@ -37,7 +45,7 @@ export default async ({ channel }: ICommandProps) => {
         client.say(channel, 'It looks like Mats isn\'t in the top hundred. What a noob am i right!!! Kappa')
     }
 
-    const [position, name, kills] = result
+    const [position, name, kills, nextKills] = result
 
-    client.say(channel, `${name} is currently in position ${position} with ${kills} kills! If you wan't to look at the rankings, you can find them here: 'https://webtabs.tk:1338/1'`)
+    client.say(channel, `${name} is currently in position ${position} with ${kills} kills! He needs ${nextKills} more kills to rank up! If you wan't to look at the rankings, you can find them here: 'https://webtabs.tk:1338/1'`)
 }
