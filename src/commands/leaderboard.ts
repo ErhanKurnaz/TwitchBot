@@ -24,10 +24,9 @@ const findUserInLeaderboard = (html: string): [string, string, string, number] |
                     .toArray()
                     .map(value => $(value).text()) as [string, string, string, number]
                 if (index === 0) {
-                    result[3] = Number(result[2])
+                    result[3] = 0
                 } else {
                     const nextKills = $($(rows[index - 1]).find('td').toArray()[2]).text()
-                    console.log(nextKills)
                     result[3] = Number(nextKills) - Number(result[2])
                 }
             }
