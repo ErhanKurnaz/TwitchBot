@@ -46,5 +46,5 @@ export default async ({ channel }: ICommandProps) => {
 
     const [position, name, kills, nextKills] = result
 
-    client.say(channel, `${name} is currently in position ${position} with ${kills} kills! He needs ${nextKills} more kills to rank up! If you wan't to look at the rankings, you can find them here: tinyurl.com/xapmdjyt`)
+    client.say(channel, `${name} is currently in position ${position} with ${kills} kills! He needs ${nextKills} more kills to rank up! If you wan't to look at the rankings, you can find them here: https://tinyurl.com/4ayvakk3`)
 }

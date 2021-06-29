@@ -88,7 +88,7 @@ export const getFollower = async userId => {
 export const getLeaderBoard = async (): Promise<string> => {
     // @ts-ignore
     process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0
-    const response = await fetch('https://webtabs.tk:1338/1', {
+    const response = await fetch('https://jlot.tk:1338/', {
         headers: {
             'Content-Type': 'text/html',
         }
