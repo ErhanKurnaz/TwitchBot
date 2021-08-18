@@ -33,7 +33,7 @@ client.on('giftpaidupgrade', (channel, username) => {
 
 client.on('raided', (channel, username, viewers) => {
     console.log(`${username} raided ${channel} with ${viewers} viewers`)
-    client.say(channel, `Thank you ${username} for RADING WITH ${viewers} VIEWERS!!! Man imagine if this stream was actually entertaining Kappa`)
+    client.say(channel, `Thank you ${username} for RAIDING WITH ${viewers} VIEWERS!!! Man imagine if this stream was actually entertaining Kappa`)
 })
 
 client.on('resub', (channel, username, monthStreak, message, userstate) => {
