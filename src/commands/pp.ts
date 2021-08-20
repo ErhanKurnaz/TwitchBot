@@ -10,7 +10,7 @@ export default ({ channel, context }: ICommandProps) => {
     } else if (context.username.length < 12) {
         size = 'you have an average pp, what an achievement 👏'
     } else {
-        size = '🎉 you have an HUUUGGGEEE pp, congratulations 🎉'
+        size = '🎉 you have a HUUUGGGEEE pp, congratulations 🎉'
     }
 
     client.say(channel, `@${context.username} ${size}`)
