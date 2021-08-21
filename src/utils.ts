@@ -1,5 +1,6 @@
 import fetch from 'node-fetch'
 import { Badges } from 'tmi.js'
+import db from './db'
 
 let authToken: string | null = null
 
@@ -97,4 +98,16 @@ export const getLeaderBoard = async (): Promise<string> => {
     // @ts-ignore
     process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 1
     return await response.text()
+}
+
+export const getBotPoints = (userId: string): number => {
+    const funds = db.getState().wallet[userId]
+
+    if (funds === undefined) {
+        db.set(`wallet.${userId}`, 50)
+
+        return 50
+    }
+
+    return funds
 }
