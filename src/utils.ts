@@ -98,3 +98,13 @@ export const getLeaderBoard = async (): Promise<string> => {
     process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 1
     return await response.text()
 }
+
+export const getViewerList = async (channelName): Promise<string> => {
+    const response = await fetch(`https://tmi.twitch.tv/group/user/${channelName}/chatters`)
+
+    if (response.ok && response.status !== 401) {
+        const chatters = await response.json()
+
+        return JSON.stringify(chatters.chatters.viewers)
+    }
+}
