@@ -1,4 +1,3 @@
-import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'node:constants';
 import { ICommandProps } from '.'
 import { client } from '../index'
 import { getViewerList, randomNumber } from "../utils";
@@ -12,7 +11,6 @@ export default async({channel}: ICommandProps) => {
 
     // Get array of current viewers in chat 
     let viewers = await getViewerList(channelName)
-    viewers = JSON.parse(viewers)
     
     // Generate random index/viewer
     const max = viewers.length

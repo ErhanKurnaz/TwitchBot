@@ -105,6 +105,6 @@ export const getViewerList = async (channelName): Promise<string> => {
     if (response.ok && response.status !== 401) {
         const chatters = await response.json()
 
-        return JSON.stringify(chatters.chatters.viewers)
+        return chatters.chatters.viewers
     }
 }
