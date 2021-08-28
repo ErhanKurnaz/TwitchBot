@@ -103,8 +103,18 @@ export const getViewerList = async (channelName): Promise<string> => {
     const response = await fetch(`https://tmi.twitch.tv/group/user/${channelName}/chatters`)
 
     if (response.ok && response.status !== 401) {
-        const chatters = await response.json()
+        const chattersJson = await response.json()
+        
+        // Make array containing normal viewers
+        let viewers = chattersJson.chatters.viewers
 
-        return chatters.chatters.viewers
+        // Add mods to the array
+        let mods = chattersJson.chatters.moderators
+        mods.splice(mods.indexOf('awesomecoolbots'),1)
+
+        // Make array with all viewers 
+        let allViewers = viewers.concat(mods)
+        
+        return allViewers
     }
 }
