@@ -21,22 +21,21 @@ export const description =
     'Use this command every 3 hours to randomly pick a viewer in the chat and make someone feel special SeemsGood This command has no cooldown for the streamer cus they\'re op PogChamp'
 export default async({channel,context}: ICommandProps) => {
     // Remove # from "channel"
-    let channelName = channel.substring(1)
+    const channelName = channel.substring(1)
 
-    // Get array of current viewers in chat 
-    let viewers = await getViewerList(channelName)
-    const max = viewers.length
+    const currentDate = new Date()
 
-    if (isNaN(max)) {
-        client.say(channel, `No one's around to be chosen BibleThump`)
-    }
-    else {
-        const currentDate = new Date()
-
-        // Execute command if channel name does not exist in cache (command hasn't been called before) 
-        // Execute command if cooldown is over
-        // Exucute command if caller is streamer
-        if (!cache[channelName] || differenceInMinutes(currentDate, cache[channelName].lastCalled) >= cooldown || isStreamer(context.badges)) {
+    // Execute command if channel name does not exist in cache (command hasn't been called before) 
+    // Execute command if cooldown is over
+    // Exucute command if caller is streamer
+    if (!cache[channelName] || differenceInMinutes(currentDate, cache[channelName].lastCalled) >= cooldown || isStreamer(context.badges)) {
+        // Get array of current viewers in chat 
+        const viewers = await getViewerList(channelName)
+        const max = viewers.length
+        if (isNaN(max)) {
+            client.say(channel, `No one's around to be chosen BibleThump`)
+        }
+        else {
             // Randomly choose viewer
             let selectedViewer = viewers[randomNumber(max)]
             client.say(channel, `@${selectedViewer} You are the chosen one BegWan`)
@@ -47,9 +46,9 @@ export default async({channel,context}: ICommandProps) => {
                 chosenOne: selectedViewer
             }
         }
-        else {
-            let cooldownLeft = cooldown - differenceInMinutes(currentDate, cache[channelName].lastCalled) 
-            client.say(channel, `The chosen one currently is @${cache[channelName].chosenOne} BegWan The next choosing ceremony will be ready in ${cooldownLeft} minutes for viewers BegWan`)
-        }
+    }
+    else {
+        let cooldownLeft = cooldown - differenceInMinutes(currentDate, cache[channelName].lastCalled) 
+        client.say(channel, `The chosen one currently is @${cache[channelName].chosenOne} BegWan The next choosing ceremony will be ready in ${cooldownLeft} minutes for viewers BegWan`)
     }
 }
