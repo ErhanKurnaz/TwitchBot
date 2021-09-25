@@ -5,11 +5,11 @@ let authToken: string | null = null
 
 export const randomNumber = (max: number) => Math.floor(Math.random() * max)
 
-export const isStreamer = (badges: Badges) => badges.broadcaster === '1'
+export const isStreamer = (badges: Badges) => badges && badges.broadcaster === '1'
 
-export const isMod = (badges: Badges) => badges.moderator === '1'
+export const isMod = (badges: Badges) => badges && badges.moderator === '1'
 
-export const isOp = (badges: Badges) => isStreamer(badges) || isMod(badges)
+export const isOp = (badges: Badges) => badges && (isStreamer(badges) || isMod(badges))
 
 export const getAuthToken = async (): Promise<string> => {
     if (authToken != null) {
