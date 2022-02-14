@@ -16,7 +16,11 @@ export default async ({ channel, context }: ICommandProps) => {
 
     const followedAt = new Date(follower.followed_at)
     const now = new Date()
-    const difference = differenceInDays(now, followedAt)
+    let difference = differenceInDays(now, followedAt)
+
+    if (context.username == "Hopo_Art") {
+        difference += 1100
+    }
 
     client.say(
         channel,
